@@ -1,0 +1,20 @@
+body {
+  background-color: rgba(42, 45, 56, 255);
+  color: #747c8d;
+}
+.form-control {
+  outline: none !important;
+  background-color: inherit !important;
+  border: 0.1 solid #56627a;
+}
+.body-card {
+  border-right: 1px dashed rgba(81, 94, 116, 255);
+}
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+/* .form-control:focus {
+  border-color: transparent;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+} */
