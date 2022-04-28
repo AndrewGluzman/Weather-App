@@ -13,10 +13,12 @@ function WeekDayCard(props) {
         </h4>
       </div>
       <div className=" p-1 ">
-        <img
+      <img
           className="m-0 w-100
           "
-          src={`/images/${day.Day.IconPhrase}.gif`}
+          src={`/images/${
+            day.Day.Icon < 12 ? day.Day.IconPhrase : "Partly sunny"
+          }.gif`}
           alt="weather"
         />
       </div>
