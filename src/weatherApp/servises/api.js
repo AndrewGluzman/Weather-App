@@ -10,3 +10,5 @@ export const changeFavorites = async (city, state) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }
 };
+
+export const API_KEY = "";
