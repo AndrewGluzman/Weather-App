@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import WeekDayCard from "./weekDayCard";
 import Select from "react-select";
-import { changeFavorites } from "../../servises/api";
+import { API_KEY, changeFavorites } from "../../servises/api";
 import { useSelector, useDispatch } from "react-redux";
 import { update } from "../../reducer/counterSlice";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ function MainBody(props) {
 
   const getQuery = async (serchparams) => {
     let resp = await fetch(
-      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=G5wXXxbjLQoneG40NjCqQba9Iy6EoTl9&q=${serchparams}`
+      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${serchparams}`
     );
     let citiesData = await resp.json();
     setSelectCitiesArr(citiesData);
@@ -36,7 +36,7 @@ function MainBody(props) {
     const myPromise = new Promise((resolve, reject) => {
       resolve(
         fetch(
-          `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${selectedCity.value}?apikey=G5wXXxbjLQoneG40NjCqQba9Iy6EoTl9&metric=true`
+          `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${selectedCity.value}?apikey=${API_KEY}&metric=true`
         )
       );
     });
@@ -77,10 +77,15 @@ function MainBody(props) {
   const checkCurentCityFavorites = () => {
     let favArr = JSON.parse(localStorage.getItem("favorites"));
     if (favArr) {
-      if (favArr.includes(currentCity)) {
+      let flag = false;
+      favArr.map((item) => {
+        if (item.label === currentCity.label) {
+          setstateFavorites(true);
+          flag = true;
+        }
+      });
+      if (!flag) {
         setstateFavorites(false);
-      } else {
-        setstateFavorites(true);
       }
     }
   };
